@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var markdown = require('markdown').markdown;
 const shortid = require('shortid')
 
 
@@ -96,6 +97,7 @@ app.get('/:page', function(req, res){
   //if(req.params.page == 'admin')return;
   page = req.params.page?req.params.page:'home';
   var pagecontent = db.get('posts').find({id:page}).value();
+	pagecontent.content = markdown.toHTML(pagecontent.content);
   var dbres = db.get('posts').filter({dir:page}).value();
   var menu = db.get('posts').filter({dir:pagecontent.dir}).value();
 
