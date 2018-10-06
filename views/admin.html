@@ -1,15 +1,13 @@
-
 <!doctype html>
 <html lang="zh">
-<head>
+	<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="以母基金为产品主线，业务范围涵盖私募股权投资、房地产基金投资、公开市场投资、另类信贷投资、机构渠道业务、家族财富及全权委托业务等多元化领域。">
-  <title>水木资产</title>
+  <title>PEPM CMS</title>
   <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">
   <style>
   body{background: #252528;color:#444354;}
-  a{color:#6d5e91;}
+  a,a:visited{color:#6d5e91;text-decoration:none;}
     .body{margin:auto;background: #fdfdfd;}
     .header,.footer{background: #252528;color:#fdfdfd;padding:10px;}
     input,textarea{width:100%;}
@@ -23,7 +21,7 @@
     .body ul{margin:0;padding:10px 10px 10px 20px;}
     h2{color: #6d5e91;padding:5px;font-size: 18px; margin:0;}
   </style>
-  <script
+	<script
   src="http://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
@@ -42,7 +40,7 @@
   </script>
 </head>
 <body>
-<div class="wrap" >
+	<div class="wrap" >
   <div class="header">
     LNodeCMS
   </div>
@@ -58,14 +56,17 @@
 </ul>
 
 <div id="browse">
-  <h2>浏览</h2>
+  <h2>浏览child pages</h2>
   <% if (names.length) { %>
     <ul>
       <% names.forEach(function(name){ %>
         <li><a href="/admin/<%= name.id%>/" ><%= name.title%></a></li>
       <% }) %>
     </ul>
-  <% } %>
+  <% } 
+else{%>
+ no subpages
+<%}%>
 </div>
 <div id="append" >
   <h2>增加子页面</h2>
