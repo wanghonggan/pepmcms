@@ -1,0 +1,145 @@
+
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="以母基金为产品主线，业务范围涵盖私募股权投资、房地产基金投资、公开市场投资、另类信贷投资、机构渠道业务、家族财富及全权委托业务等多元化领域。">
+  <title>水木资产</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">
+  <style>
+  body{background: #252528;color:#444354;}
+  a{color:#6d5e91;}
+    .body{margin:auto;background: #fdfdfd;}
+    .header,.footer{background: #252528;color:#fdfdfd;padding:10px;}
+    input,textarea{width:100%;}
+    form{clear:both;max-width: 600px;}
+    #menu {padding:10px 10px 0;margin:0;background: #b1afb7;}
+    #menu  li{display: inline-block;padding:5px 10px;margin:0;background: #d1d3db ;border-radius: 5px 5px 0 0;}
+    #menu  li.hover{background: #fff;}
+    #append,#edit{display: none;padding:10px;}
+    #browse{padding:10px;}
+    .breadcrumbs{padding:10px;}
+    .body ul{margin:0;padding:10px 10px 10px 20px;}
+    h2{color: #6d5e91;padding:5px;font-size: 18px; margin:0;}
+  </style>
+  <script
+  src="http://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+
+  <script>
+    function showtab(tab){
+      $('#browse').hide();
+      $('#append').hide();
+      $('#edit').hide();
+      $('#browsebt').removeClass("hover");
+      $('#appendbt').removeClass("hover");
+      $('#editbt').removeClass("hover");
+      $('#'+tab+'bt').addClass("hover");
+      $('#'+tab).fadeIn();
+    }
+  </script>
+</head>
+<body>
+<div class="wrap" >
+  <div class="header">
+    LNodeCMS
+  </div>
+  <div class="body" >
+<div class="breadcrumbs" >
+  <a href="/admin/" >根目录</a>
+    <% if (typeof(page)!='undefined' && typeof(page.title )!='undefined') { %> / <%= page.title %> / <a href="/admin/<%= page.dir%>" >返回上级</a><%}%>
+</div>
+<ul id="menu" >
+  <li id="browsebt" class="hover" onclick="showtab('browse')" >浏览</li>
+  <li id="appendbt"  onclick="showtab('append')" >新增</li>
+  <li id="editbt"  onclick="showtab('edit')" >编辑</li>
+</ul>
+
+<div id="browse">
+  <h2>浏览</h2>
+  <% if (names.length) { %>
+    <ul>
+      <% names.forEach(function(name){ %>
+        <li><a href="/admin/<%= name.id%>/" ><%= name.title%></a></li>
+      <% }) %>
+    </ul>
+  <% } %>
+</div>
+<div id="append" >
+  <h2>增加子页面</h2>
+  <form method="POST" class="pure-form pure-form-stacked" >
+  <div class="pure-control-group">
+  <label for="name">标题</label>
+  <input name="title" placeholder="标题" />
+  </div>
+  <div class="pure-control-group">
+  <label for="name">页面名称</label>
+  <input name="pagename" placeholder="页面名称" />
+  </div>        <div class="pure-control-group">
+  <label for="name">SEO:页面Title</label>
+  <input name="pagetitle" placeholder="SEO:页面Title"  />
+  </div>        <div class="pure-control-group">
+  <label for="name">SEO:关键词</label>
+  <input name="keywords" placeholder="SEO:关键词" />
+  </div>        <div class="pure-control-group">
+  <label for="name">SEO:页面描述</label>
+  <input name="description" placeholder="SEO:页面描述" />
+  </div>        <div class="pure-control-group">
+  <label for="name">页面内容</label>
+  <textarea name="content" ></textarea>
+  </div>
+
+          <div class="pure-controls">
+    <input type="submit" class="pure-button" />
+  </div>
+  </form>
+
+</div>
+<div id="edit" >
+
+  <% if (typeof(page)!='undefined' && typeof(page.title )!='undefined') { %>
+  <h2>编辑页面</h2>
+    <form method="POST" class="pure-form pure-form-stacked" >
+      <div class="pure-control-group">
+        <label for="name">标题</label>
+        <input name="id" type="hidden" value="<%= page.id  %>" />
+        <input name="title" value="<%= page.title  %>" />
+      </div>
+      <div class="pure-control-group">
+        <label for="name">页面名称</label>
+        <input name="pagename" placeholder="页面名称" />
+      </div>
+      <div class="pure-control-group">
+        <label for="name">SEO:页面Title</label>
+        <input name="pagetitle" placeholder="SEO:页面Title"  />
+      </div>
+      <div class="pure-control-group">
+        <label for="name">SEO:关键词</label>
+        <input name="keywords" placeholder="SEO:关键词" />
+      </div>
+      <div class="pure-control-group">
+        <label for="name">SEO:页面描述</label>
+        <input name="description" placeholder="SEO:页面描述" />
+      </div>
+      <div class="pure-control-group">
+        <label for="name">页面内容</label>
+        <textarea name="content" ><%= page.content %></textarea>
+      </div>
+      <div class="pure-controls">
+        <input type="submit" class="pure-button" />
+      </div>
+    </form>
+  <% }%>
+</div>
+</div>
+
+
+
+<div class="footer" >
+  copyrights@asdfas.com
+</div>
+</div>
+</body>
+</html>
