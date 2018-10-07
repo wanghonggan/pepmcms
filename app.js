@@ -53,7 +53,12 @@ app.all('/admin/:dir', function(req, res){
     {
       response = {
         title:req.body.title,
-        content:req.body.content
+        content:req.body.content,
+        pagename:req.body.pagename,
+        pagetitle:req.body.pagetitle,
+        keywords:req.body.keywords,
+        description:req.body.description,
+        layout:req.body.layout
       };
       db.get('posts').find({id:req.body.id})
         .assign(response)
@@ -66,7 +71,12 @@ app.all('/admin/:dir', function(req, res){
         id : shortid.generate(),
         title:req.body.title,
         content:req.body.content,
-        dir: dir
+        dir: dir,
+        pagename:req.body.pagename,
+        pagetitle:req.body.pagetitle,
+        keywords:req.body.keywords,
+        description:req.body.description,
+        layout:req.body.layout
       };
 
       db.get('posts')
@@ -85,11 +95,17 @@ app.all('/admin/:dir', function(req, res){
 app.get('/:page', function(req, res){
   //if(req.params.page == 'admin')return;
   page = req.params.page?req.params.page:'home';
-  var pagecontent = db.get('posts').find({id:page}).value();
+
+  var pagecontent = db.get('posts').find({pagename:page}).value();
+  if(pagecontent == undefined){
+    var pagecontent = db.get('posts').find({id:page}).value();
+  }
+  if(pagecontent == undefined)res.send('404');
   var dbres = db.get('posts').filter({dir:page}).value();
   var menu = db.get('posts').filter({dir:pagecontent.dir}).value();
-	//	markdown.toHTML(pagecontent.content)
-  res.render('page',{page:pagecontent,list:dbres,menu:menu});
+  var content = pagecontent;
+  content.html = markdown.toHTML(content.content)
+  res.render('page',{page:content,list:dbres,menu:menu});
   console.log(dbres);
 });
 
