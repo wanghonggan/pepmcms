@@ -80,22 +80,19 @@ app.all('/admin/:dir', function(req, res){
    var dbres = db.get('posts').filter({dir:dir}).value();
 	 //console.log(page);
    res.render('admin', { title: 'Express' ,page:page,names:dbres});
-   //res.send(dir);
 });
 
 app.get('/:page', function(req, res){
   //if(req.params.page == 'admin')return;
   page = req.params.page?req.params.page:'home';
   var pagecontent = db.get('posts').find({id:page}).value();
-	pagecontent.content = markdown.toHTML(pagecontent.content);
   var dbres = db.get('posts').filter({dir:page}).value();
   var menu = db.get('posts').filter({dir:pagecontent.dir}).value();
-
+	//	markdown.toHTML(pagecontent.content)
   res.render('page',{page:pagecontent,list:dbres,menu:menu});
   console.log(dbres);
 });
 
-
 app.listen(3000, function(){
-	 console.log('server has running at port 3000');
+  console.log('server has running at port 3000');
 })
