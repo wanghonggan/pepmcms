@@ -1,0 +1,9 @@
+body{background: #252528;color:#444354;}
+  a,a:visited{color:#6d5e91;text-decoration:none;}
+    .body{margin:auto;background: #fdfdfd;}                     .header,.footer{background: #252528;color:#fdfdfd;padding:10px;}
+    input,textarea{width:100%;}                                 form{clear:both;max-width: 600px;}                          #menu {padding:10px 10px 0;margin:0;background: #b1afb7;}
+    #menu  li{display: inline-block;padding:5px 10px;margin:0;background: #d1d3db ;border-radius: 5px 5px 0 0;}             #menu  li.hover{background: #fff;}                          #append,#edit{display: none;padding:10px;}
+    #browse{padding:10px;}
+    .breadcrumbs{padding:10px;}
+    .body ul{margin:0;padding:10px 10px 10px 20px;}
+    h2{color: #6d5e91;padding:5px;font-size: 18px; margin:0;}

@@ -3,7 +3,6 @@ var app = express();
 var markdown = require('markdown').markdown;
 const shortid = require('shortid')
 
-
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended:true
@@ -26,17 +25,8 @@ db.defaults({ posts: [
 ],passwd:'root' })
   .write()
 
-// 初始化一个页面
-// Add a post
-//
-// var size = db.get('posts').find({id:'home'}).size()
-// if( size ==  0){
-//   db.get('posts')
-//     .push()
-//     .write();
-// }
 
-
+app.use('/static',express.static(__dirname+'/static'));
 // Set a user using Lodash shorthand syntax
 db.set('user.name', 'typicode')
   .write()
