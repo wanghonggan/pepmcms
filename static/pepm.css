@@ -2,7 +2,7 @@ body{background: #252528;color:#444354;}
 .body-wrap{background: #fff;}
 .header-wrap{}
 .body a,.body a:visited{color:#6d5e91;text-decoration:none;}
-a,a:hover{color:#98c;}
+a,a:hover{color:#98c;text-decoration:none;}
 .body{margin:auto;background: #fdfdfd;}
 .header,.footer{background: #252528;color:#fdfdfd;padding:10px;}
 input,textarea{width:100%;}
