@@ -54,7 +54,7 @@ app.all('/admin/:dir', function(req, res){
     res.cookie('passwd',pwd);
   }
   var passwd = db.get('passwd').value();
-  if( passwd != pwd ){
+  if( passwd != req.cookies.passwd && passwd != pwd ){
     return res.render('login');
   }
 
