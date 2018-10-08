@@ -1,13 +1,12 @@
 var express = require('express');
 var app = express();
 var markdown = require('markdown').markdown;
+var cookieParser = require('cookie-parser');
 const shortid = require('shortid')
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({
-    extended:true
-}));
-
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
 app.set('views','views');
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
@@ -44,8 +43,13 @@ app.get('/admin', function(req, res){
 });
 
 app.all('/admin/:dir', function(req, res){
-
-  // if post
+// 验证
+ var passwd= db.get('passwd').value();
+	if(passwd != req.cookies.name ){
+	//console.log(req.cookies);
+	res.render('login');
+	}
+// if post
  var dir = req.params.dir?req.params.dir:'root';
   if(req.body.title){
 
