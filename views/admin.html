@@ -63,29 +63,29 @@ else{%>
   <form method="POST" class="pure-form pure-form-stacked" >
   <div class="pure-control-group">
   	<label for="name">标题</label>
-  	<input name="title" placeholder="标题" />
+  	<input name="title"  />
   </div>
 
 	<div class="pure-control-group">
-	  <label for="name">页面内容</label>
-	  <textarea name="content" ></textarea>
+	  <label for="name">页面内容（MarkDown）</label>
+	  <textarea name="content" rows="10" ></textarea>
   </div>
 
 	<div class="pure-control-group">
 		<label for="name">页面名称 url</label>
-		<input name="pagename" placeholder="页面名称" />
+		<input name="pagename"  />
 	</div>
 	<div class="pure-control-group">
 		<label for="name">SEO:页面Title</label>
-		<input name="pagetitle" placeholder="SEO:页面Title"  />
+		<input name="pagetitle"   />
 	</div>
 	<div class="pure-control-group">
 		<label for="name">SEO:关键词</label>
-		<input name="keywords" placeholder="SEO:关键词" />
+		<input name="keywords"  />
 	</div>
 	<div class="pure-control-group">
 		<label for="name">SEO:页面描述</label>
-		<input name="description" placeholder="SEO:页面描述" />
+		<input name="description"  />
 	</div>
 
 
@@ -112,19 +112,19 @@ else{%>
 
       <div class="pure-control-group">
         <label for="name">页面名称</label>
-        <input name="pagename" value="<%= page.pagename  %>" placeholder="页面名称" />
+        <input name="pagename" value="<%= page.pagename  %>" />
       </div>
       <div class="pure-control-group">
         <label for="name">SEO:页面Title</label>
-        <input name="pagetitle" value="<%= page.pagetitle  %>" placeholder="SEO:页面Title"  />
+        <input name="pagetitle" value="<%= page.pagetitle  %>"   />
       </div>
       <div class="pure-control-group">
         <label for="name">SEO:关键词</label>
-        <input name="keywords" value="<%= page.keywords  %>"  placeholder="SEO:关键词" />
+        <input name="keywords" value="<%= page.keywords  %>"   />
       </div>
       <div class="pure-control-group">
         <label for="name">SEO:页面描述</label>
-        <input name="description" value="<%= page.description  %>"  placeholder="SEO:页面描述" />
+        <input name="description" value="<%= page.description  %>"   />
       </div>
 
       <div class="pure-controls">
