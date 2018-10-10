@@ -19,9 +19,10 @@ const db = low(adapter);
 // Set some defaults
 db.defaults({ posts: [
   { id:'home', dir:'root' , title: '首页'},
-  { id:'layout', dir:'root' , title: '模板'},
-  { id:'links', dir:'root' , title: '链接'},
-],passwd:'root' })
+  { id:'news', dir:'root' , title: '新闻'},
+  { id:'products', dir:'root' , title: '产品和服务'},
+  { id:'about', dir:'root' , title: '关于我们'},
+],passwd:'admin' })
   .write()
 
 
