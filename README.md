@@ -20,4 +20,5 @@ lowdb 是一个类似于 mongodb 的本地数据库
 2. node  app.js
 3. 浏览器 http://localhost:3000/ 查看
 4. 浏览器 http://localhost:3000/admin/ 管理 初始密码  admin
+5. 修改密码 编辑 db.json 修改  passwd 对应的字符串  
 
