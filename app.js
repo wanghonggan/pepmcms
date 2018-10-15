@@ -64,41 +64,22 @@ app.all('/admin/:dir', function(req, res){
   if(req.body.title){
     if(req.body.id)
     {
-      response = {
-        title:req.body.title,
-        content:req.body.content,
-        pagename:req.body.pagename,
-        pagetitle:req.body.pagetitle,
-        keywords:req.body.keywords,
-        description:req.body.description,
-        layout:req.body.layout
-      };
       db.get('posts').find({id:req.body.id})
-        .assign(response)
+        .assign(req.body)
         .write();
     }
     else {
-      response = {
-        id : shortid.generate(),
-        title:req.body.title,
-        content:req.body.content,
-        dir: dir,
-        pagename:req.body.pagename,
-        pagetitle:req.body.pagetitle,
-        keywords:req.body.keywords,
-        description:req.body.description,
-        layout:req.body.layout
-      };
-
+	  req.body.id = shortid.generate();
+	  req.body.dir = dir;
       db.get('posts')
-        .push(response)
+        .push(req.body)
         .write();
     }
   }
 
    var page = db.get('posts').find({id:dir}).value();
    var dbres = db.get('posts').filter({dir:dir}).value();
-	 //console.log(page);
+   //console.log(page);
    res.render('admin', { title: 'Express' ,page:page,names:dbres});
 });
 

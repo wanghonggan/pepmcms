@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh">
-	<head>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PEPM CMS</title>
@@ -11,7 +11,6 @@
   src="http://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
-
   <script>
     function showtab(tab){
       $('#browse').hide();
@@ -26,7 +25,7 @@
   </script>
 </head>
 <body>
-	<div class="wrap" >
+<div class="wrap" >
   <div class="header">
 		PEPMCMS
 		[
@@ -37,7 +36,7 @@
   <div class="body" >
 <div class="breadcrumbs" >
   <a href="/admin/" >根目录</a>
-    <% if (typeof(page)!='undefined' && typeof(page.title )!='undefined') { %> / <%= page.title %> / <a href="/admin/<%= page.dir%>" >返回上级</a><%}%>
+    <% if (typeof(page)!='undefined' && typeof(page.title )!='undefined') { %> <%= page.title %> / <a href="/admin/<%= page.dir%>" >返回上级</a><%}%>
 </div>
 <ul id="menu" >
   <li id="browsebt" class="hover" onclick="showtab('browse')" >浏览</li>
@@ -66,13 +65,16 @@ else{%>
   	<input name="title"  />
   </div>
 
-	<div class="pure-control-group">
+  <div class="pure-control-group">
 	  <label for="name">页面内容（MarkDown）</label>
 	  <textarea name="content" rows="10" ></textarea>
   </div>
-
+  <div class="pure-control-group">
+	<label>配图</label>
+	<input name="snapshot"/> 
+  </div>
 	<div class="pure-control-group">
-		<label for="name">页面名称 url</label>
+		<label>页面名称 url</label>
 		<input name="pagename"  />
 	</div>
 	<div class="pure-control-group">
@@ -87,8 +89,6 @@ else{%>
 		<label for="name">SEO:页面描述</label>
 		<input name="description"  />
 	</div>
-
-
 	<div class="pure-controls">
     <input type="submit" class="pure-button" />
   </div>
@@ -104,16 +104,18 @@ else{%>
         <input name="id" type="hidden" value="<%= page.id  %>" />
         <input name="title" value="<%= page.title  %>" />
       </div>
-			<div class="pure-control-group">
-				<label for="name">页面内容</label>
-				<textarea name="content" rows="10" ><%= page.content %></textarea>
-			</div>
-
-
+	 <div class="pure-control-group">
+		<label for="name">页面内容</label>
+		<textarea name="content" rows="10" ><%= page.content %></textarea>
+	</div>
       <div class="pure-control-group">
-        <label for="name">页面名称</label>
-        <input name="pagename" value="<%= page.pagename  %>" />
+        <label>配图</label>
+        <input name="snapshot" value="<%= page.snapshot%>" />
       </div>
+
+<div class="pure-control-group">                                          <label>页面名称 url</label>
+	<input name="pagename" value="<%= page.pagename%>" />
+</div>
       <div class="pure-control-group">
         <label for="name">SEO:页面Title</label>
         <input name="pagetitle" value="<%= page.pagetitle  %>"   />
