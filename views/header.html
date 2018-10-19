@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh">
+<head> 
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PEPM CMS</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">                     
+	<link type="text/css" rel="styleSheet"  href="/static/pepm.css" />
+  <link href="/static/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>                                    
+	<script>
+    function showtab(tab){
+      $('#browse').hide();
+      $('#append').hide();
+      $('#edit').hide();
+      $('#browsebt').removeClass("hover");
+      $('#appendbt').removeClass("hover");
+      $('#editbt').removeClass("hover");
+      $('#'+tab+'bt').addClass("hover");
+      $('#'+tab).fadeIn();
+    }
+  </script>
+</head>
+<body>
+<div class="wrap" >
+  <div class="header">
+        PEPMCMS
+        [
+        <a href="/" target="_blank" >浏览网站</a>
+		<a href="/admin/pwd" >修改密码</a>
+        <a href="/logout" >退出登录</a>
+        ]
+  </div>
+  <div class="body" >

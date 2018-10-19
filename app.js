@@ -36,7 +36,15 @@ app.get('/', function(req, res){
    res.redirect('/home');
 });
 
-
+app.all('/admin/pwd',function(req,res){
+  if(req.body.pwd && req.body.oldpwd && (req.body.pwd == req.body.pwd2) && req.body.oldpwd == db.get("passwd").value()){
+	  db.find("passwd")
+			.assign({'passwd':req.body.pwd})
+			.write();
+		res.send("密码更新成功！");
+	}
+	res.render('pwd');
+});
 
 
 app.get('/admin', function(req, res){

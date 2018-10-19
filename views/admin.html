@@ -1,39 +1,4 @@
-<!doctype html>
-<html lang="zh">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PEPM CMS</title>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">
-  <link type="text/css" rel="styleSheet"  href="/static/pepm.css" />
-  <link href="/static/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-  <script
-  src="http://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-  <script>
-    function showtab(tab){
-      $('#browse').hide();
-      $('#append').hide();
-      $('#edit').hide();
-      $('#browsebt').removeClass("hover");
-      $('#appendbt').removeClass("hover");
-      $('#editbt').removeClass("hover");
-      $('#'+tab+'bt').addClass("hover");
-      $('#'+tab).fadeIn();
-    }
-  </script>
-</head>
-<body>
-<div class="wrap" >
-  <div class="header">
-		PEPMCMS
-		[
-		<a href="/" target="_blank" >浏览网站</a>
-		<a href="/logout" >退出登录</a>
-		]
-  </div>
-  <div class="body" >
+<%- include("header.html")%>
 <div class="breadcrumbs" >
   <a href="/admin/" >根目录</a>
     <% if (typeof(page)!='undefined' && typeof(page.title )!='undefined') { %> <%= page.title %> / <a href="/admin/<%= page.dir%>" >返回上级</a><%}%>
@@ -43,30 +8,28 @@
   <li id="appendbt"  onclick="showtab('append')" >新增</li>
   <li id="editbt"  onclick="showtab('edit')" >编辑</li>
 </ul>
-
 <div id="browse">
   <h2>浏览</h2>
   <% if (names.length) { %>
-    <ul>
-      <% names.forEach(function(name){ %>
-        <li><a href="/admin/<%= name.id%>/" ><%= name.title%></a></li>
-      <% }) %>
-    </ul>
+  <ul>
+		<% names.forEach(function(name){ %>
+    <li><a href="/admin/<%= name.id%>/" ><%= name.title%></a></li>
+    <% }) %>
+  </ul>
   <% }
 else{%>
- no subpages
+  没有子页面! 
 <%}%>
 </div>
 <div id="append" >
   <h2>增加子页面</h2>
   <form method="POST" class="pure-form pure-form-stacked" >
   <div class="pure-control-group">
-  	<label for="name">标题</label>
+  	<label>标题</label>
   	<input name="title"  />
   </div>
-
   <div class="pure-control-group">
-	  <label for="name">页面内容（MarkDown）</label>
+	  <label>页面内容（MarkDown）</label>
 	  <textarea name="content" rows="10" ></textarea>
   </div>
   <div class="pure-control-group">
@@ -78,15 +41,15 @@ else{%>
 		<input name="pagename"  />
 	</div>
 	<div class="pure-control-group">
-		<label for="name">SEO:页面Title</label>
+		<label>SEO:页面Title</label>
 		<input name="pagetitle"   />
 	</div>
 	<div class="pure-control-group">
-		<label for="name">SEO:关键词</label>
+		<label>SEO:关键词</label>
 		<input name="keywords"  />
 	</div>
 	<div class="pure-control-group">
-		<label for="name">SEO:页面描述</label>
+		<label>SEO:页面描述</label>
 		<input name="description"  />
 	</div>
 	<div class="pure-controls">
@@ -95,53 +58,42 @@ else{%>
   </form>
 </div>
 <div id="edit" >
-
   <% if (typeof(page)!='undefined' && typeof(page.title )!='undefined') { %>
   <h2>编辑页面</h2>
-    <form method="POST" class="pure-form pure-form-stacked" >
-      <div class="pure-control-group">
-        <label for="name">标题</label>
-        <input name="id" type="hidden" value="<%= page.id  %>" />
-        <input name="title" value="<%= page.title  %>" />
-      </div>
-	 <div class="pure-control-group">
-		<label for="name">页面内容</label>
-		<textarea name="content" rows="10" ><%= page.content %></textarea>
-	</div>
-      <div class="pure-control-group">
-        <label>配图</label>
-        <input name="snapshot" value="<%= page.snapshot%>" />
-      </div>
-
-<div class="pure-control-group">                                          <label>页面名称 url</label>
-	<input name="pagename" value="<%= page.pagename%>" />
-</div>
-      <div class="pure-control-group">
-        <label for="name">SEO:页面Title</label>
-        <input name="pagetitle" value="<%= page.pagetitle  %>"   />
-      </div>
-      <div class="pure-control-group">
-        <label for="name">SEO:关键词</label>
-        <input name="keywords" value="<%= page.keywords  %>"   />
-      </div>
-      <div class="pure-control-group">
-        <label for="name">SEO:页面描述</label>
-        <input name="description" value="<%= page.description  %>"   />
-      </div>
-
-      <div class="pure-controls">
-        <input type="submit" class="pure-button" />
-      </div>
-    </form>
+  <form method="POST" class="pure-form pure-form-stacked" >
+    <div class="pure-control-group">
+      <label>标题</label>
+      <input name="id" type="hidden" value="<%= page.id  %>" />
+      <input name="title" value="<%= page.title  %>" />
+    </div>
+		<div class="pure-control-group">
+			<label>页面内容</label>
+			<textarea name="content" rows="10" ><%= page.content %></textarea>
+		</div>
+		<div class="pure-control-group">
+      <label>配图</label>
+      <input name="snapshot" value="<%= page.snapshot%>" />
+    </div>
+		<div class="pure-control-group">                                        
+			<label>页面名称 url</label>
+			<input name="pagename" value="<%= page.pagename%>" />
+		</div>
+		<div class="pure-control-group">
+			<label>SEO:页面Title</label>
+		  <input name="pagetitle" value="<%= page.pagetitle  %>"   />
+		</div>
+    <div class="pure-control-group">
+      <label>SEO:关键词</label>
+      <input name="keywords" value="<%= page.keywords  %>"   />
+    </div>
+    <div class="pure-control-group">
+      <label>SEO:页面描述</label>
+      <input name="description" value="<%= page.description  %>"   />
+    </div>
+    <div class="pure-controls">
+      <input type="submit" class="pure-button" />
+    </div>
+  </form>
   <% }%>
 </div>
-</div>
-
-
-
-<div class="footer" >
-	Powered by <a href="http://www.pepm.com.cn">PEPM</a>
-</div>
-</div>
-</body>
-</html>
+<%- include("footer.html")%>
