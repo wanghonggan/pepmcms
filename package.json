@@ -16,6 +16,7 @@
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0",
     "markdown": "^0.5.0",
+    "multiparty": "^4.2.1",
     "shortid": "^2.2.13"
   }
 }
